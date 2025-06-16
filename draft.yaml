@@ -1,0 +1,117 @@
+models:
+  ProductUnit:
+    id: uuid primary
+    name: string:255
+
+  ProductCategory:
+    id: uuid primary
+    name: string:255
+
+  Product:
+    id: uuid primary
+    name: string:255
+    sku: string:255
+    description: string:255
+    product_unit_id: uuid foreign:product_units.id
+    product_category_id: uuid foreign:product_categories.id
+    purchase_price: double
+    seliing_price: double
+
+  Warehouse:
+    id: uuid primary
+    name: string:225
+    address: string:225
+    phone: bigInt
+
+  Stock:
+    id: uuid primary
+    product_id: uuid foreign:products.id
+    warehouse_id: uuid foreign:warehouses.id
+    stock: bigInt
+
+  StockCard:
+    id: uuid primary
+    product_id: uuid foreign:products.id
+    warehouse_id: uuid foreign:warehouses.id
+    type: enum['in','out']
+    user_id: uuid foreign:users.id
+    price: double
+    sub_total_price: double
+
+  StockTranferItem:
+    id: uuid primary
+    name: string:255
+    location: string:255
+    contact_person: string:255
+    email: string:255
+    status: enum:active,not-active
+    sender_warehouse_at: datetime
+
+  DeliveryReceipt:
+    id: uuid primary
+    number: string:255
+    relationships:
+      morphTo: Receiptable
+    received_by_id: uuid foreign:users.id
+    repeipt_at: datetime
+
+  DeliveryReceiptItem:
+    id: uuid primary
+    delivery_receipt_id: uuid foreign:delivery_receipts.id
+    product_id: uuid foreign:products.id
+    quantity: bigInt
+
+  Supplier:
+    id: uuid primary
+    name: string:255
+    address: string:255
+    office_number: string:255
+    representative_name: string:255
+    representative_phone: bigInt
+    email: string:255
+    city: string:255
+
+  SenderWarehouse:
+    id: uuid primary
+    name: string:255
+    location: string:255
+    contact_person: string:255
+    email: string:255
+    status: enum:active,not-active
+    sender_warehouse_at: datetime
+
+  RecipientWarehouse:
+    id: uuid primary
+    name: string:255
+    location: string:255
+    contact_person: string:255
+    email: string:255
+    status: enum:active,not-active
+    recipient_warehouse_at: datetime
+
+  PurchaseOrder:
+    id: uuid primary
+    number: string:255
+    suppelier_id: uuid foreign:suppliers.id
+    purchase_at: datetime
+    warehouse_id: uuid foreign:warehouses.id
+    status: enum:draft,ordered,sent,receipt
+
+  PurchaseOrderItem:
+    id: uuid primary
+    purchase_order_id: uuid foreign:purchase_orders.id
+    product_id: uuid foreign:products.id
+    quantity: bigInt
+    price: double
+    sub_total_price: double
+    note: string:255
+
+  StockTranfer:
+    id: uuid primary
+    number: string:255
+    sender_warehouse_id: uuid foreign:sender_warehouses.id
+    recipient_warehouse_id: uuid foreign:recipient_warehouses.id
+    made_by_id: uuid foreign:users.id
+    status: enum:draft,sent,received
+
+seeders: ProductUnit, ProductCategory, Product, Warehouse, Stock, StockCard, StockTranfersItem, DeliveryReceipt, DeliveryReceiptItem, Supplier, SenderWarehouse, RecipientWarehouse, PurchaseOrder, PurchaseOrderItem

@@ -1,0 +1,76 @@
+created:
+    - database/factories/ProductUnitFactory.php
+    - database/factories/ProductCategoryFactory.php
+    - database/factories/ProductFactory.php
+    - database/factories/WarehouseFactory.php
+    - database/factories/StockFactory.php
+    - database/factories/StockCardFactory.php
+    - database/factories/StockTranferItemFactory.php
+    - database/factories/DeliveryReceiptFactory.php
+    - database/factories/DeliveryReceiptItemFactory.php
+    - database/factories/SupplierFactory.php
+    - database/factories/SenderWarehouseFactory.php
+    - database/factories/RecipientWarehouseFactory.php
+    - database/factories/PurchaseOrderFactory.php
+    - database/factories/PurchaseOrderItemFactory.php
+    - database/factories/StockTranferFactory.php
+    - database/migrations/2025_04_22_074640_create_product_units_table.php
+    - database/migrations/2025_04_22_074641_create_product_categories_table.php
+    - database/migrations/2025_04_22_074642_create_products_table.php
+    - database/migrations/2025_04_22_074643_create_warehouses_table.php
+    - database/migrations/2025_04_22_074644_create_stocks_table.php
+    - database/migrations/2025_04_22_074645_create_stock_cards_table.php
+    - database/migrations/2025_04_22_074646_create_stock_tranfer_items_table.php
+    - database/migrations/2025_04_22_074647_create_delivery_receipts_table.php
+    - database/migrations/2025_04_22_074648_create_delivery_receipt_items_table.php
+    - database/migrations/2025_04_22_074649_create_suppliers_table.php
+    - database/migrations/2025_04_22_074650_create_sender_warehouses_table.php
+    - database/migrations/2025_04_22_074651_create_recipient_warehouses_table.php
+    - database/migrations/2025_04_22_074652_create_purchase_orders_table.php
+    - database/migrations/2025_04_22_074653_create_purchase_order_items_table.php
+    - database/migrations/2025_04_22_074654_create_stock_tranfers_table.php
+    - app/Models/ProductUnit.php
+    - app/Models/ProductCategory.php
+    - app/Models/Product.php
+    - app/Models/Warehouse.php
+    - app/Models/Stock.php
+    - app/Models/StockCard.php
+    - app/Models/StockTranferItem.php
+    - app/Models/DeliveryReceipt.php
+    - app/Models/DeliveryReceiptItem.php
+    - app/Models/Supplier.php
+    - app/Models/SenderWarehouse.php
+    - app/Models/RecipientWarehouse.php
+    - app/Models/PurchaseOrder.php
+    - app/Models/PurchaseOrderItem.php
+    - app/Models/StockTranfer.php
+    - database/seeders/ProductUnitSeeder.php
+    - database/seeders/ProductCategorySeeder.php
+    - database/seeders/ProductSeeder.php
+    - database/seeders/WarehouseSeeder.php
+    - database/seeders/StockSeeder.php
+    - database/seeders/StockCardSeeder.php
+    - database/seeders/StockTranfersItemSeeder.php
+    - database/seeders/DeliveryReceiptSeeder.php
+    - database/seeders/DeliveryReceiptItemSeeder.php
+    - database/seeders/SupplierSeeder.php
+    - database/seeders/SenderWarehouseSeeder.php
+    - database/seeders/RecipientWarehouseSeeder.php
+    - database/seeders/PurchaseOrderSeeder.php
+    - database/seeders/PurchaseOrderItemSeeder.php
+models:
+    ProductUnit: { id: 'uuid primary', name: 'string:255' }
+    ProductCategory: { id: 'uuid primary', name: 'string:255' }
+    Product: { id: 'uuid primary', name: 'string:255', sku: 'string:255', description: 'string:255', product_unit_id: 'uuid foreign:product_units.id', product_category_id: 'uuid foreign:product_categories.id', purchase_price: double, seliing_price: double }
+    Warehouse: { id: 'uuid primary', name: 'string:225', address: 'string:225', phone: bigInt }
+    Stock: { id: 'uuid primary', product_id: 'uuid foreign:products.id', warehouse_id: 'uuid foreign:warehouses.id', stock: bigInt }
+    StockCard: { id: 'uuid primary', product_id: 'uuid foreign:products.id', warehouse_id: 'uuid foreign:warehouses.id', type: "enum['in','out']", user_id: 'uuid foreign:users.id', price: double, sub_total_price: double }
+    StockTranferItem: { id: 'uuid primary', name: 'string:255', location: 'string:255', contact_person: 'string:255', email: 'string:255', status: 'enum:active,not-active', sender_warehouse_at: datetime }
+    DeliveryReceipt: { id: 'uuid primary', number: 'string:255', relationships: { morphTo: Receiptable }, received_by_id: 'uuid foreign:users.id', repeipt_at: datetime }
+    DeliveryReceiptItem: { id: 'uuid primary', delivery_receipt_id: 'uuid foreign:delivery_receipts.id', product_id: 'uuid foreign:products.id', quantity: bigInt }
+    Supplier: { id: 'uuid primary', name: 'string:255', address: 'string:255', office_number: 'string:255', representative_name: 'string:255', representative_phone: bigInt, email: 'string:255', city: 'string:255' }
+    SenderWarehouse: { id: 'uuid primary', name: 'string:255', location: 'string:255', contact_person: 'string:255', email: 'string:255', status: 'enum:active,not-active', sender_warehouse_at: datetime }
+    RecipientWarehouse: { id: 'uuid primary', name: 'string:255', location: 'string:255', contact_person: 'string:255', email: 'string:255', status: 'enum:active,not-active', recipient_warehouse_at: datetime }
+    PurchaseOrder: { id: 'uuid primary', number: 'string:255', suppelier_id: 'uuid foreign:suppliers.id', purchase_at: datetime, warehouse_id: 'uuid foreign:warehouses.id', status: 'enum:draft,ordered,sent,receipt' }
+    PurchaseOrderItem: { id: 'uuid primary', purchase_order_id: 'uuid foreign:purchase_orders.id', product_id: 'uuid foreign:products.id', quantity: bigInt, price: double, sub_total_price: double, note: 'string:255' }
+    StockTranfer: { id: 'uuid primary', number: 'string:255', sender_warehouse_id: 'uuid foreign:sender_warehouses.id', recipient_warehouse_id: 'uuid foreign:recipient_warehouses.id', made_by_id: 'uuid foreign:users.id', status: 'draft,sent,received' }
