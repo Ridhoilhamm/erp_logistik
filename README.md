@@ -39,7 +39,8 @@ Deskripsi singkat tentang proyek Laravel Anda. Misalnya:
 - [Livewire](https://livewire.laravel.com)
 - [Alpine.js](https://alpinejs.dev)
 - [Tailwind CSS](https://tailwindcss.com)
-- [MySQL](https://www.mysql.com) / MariaDB
+- [TallStack] Component frontend
+- [MySQL](https://www.mysql.com)
 - [Vite](https://vitejs.dev) untuk asset frontend
 - [Filament](https://filamentphp.com) (jika digunakan)
 
@@ -53,3 +54,7 @@ Ikuti langkah-langkah berikut untuk menjalankan project Laravel di lokal:
    ```bash
    git clone https://github.com/nama-user/nama-repo.git
    cd nama-repo
+   composer install
+   php artisan key:generate
+   
+
