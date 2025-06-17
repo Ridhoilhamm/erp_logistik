@@ -17,7 +17,7 @@
 
 Deskripsi singkat tentang proyek Laravel Anda. Misalnya:
 
-> Aplikasi manajemen gudang yang mendukung CRUD produk, kategori, stok, transfer antar gudang, dan laporan real-time berbasis Laravel + Livewire.
+> Aplikasi manajemen gudang yang mendukung CRUD produk, kategori, stok, transfer antar gudang, dan laporan secara real-time, export serta import data menggunakan excel berbasis Laravel + Livewire.
 
 ---
 
