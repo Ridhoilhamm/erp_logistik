@@ -43,7 +43,7 @@ Deskripsi singkat tentang proyek Laravel Anda. Misalnya:
 - [Bluprint](https://blueprint.laravelshift.com/)
 - [MySQL](https://www.mysql.com)
 - [Vite](https://vitejs.dev) untuk asset frontend
-- [Filament](https://filamentphp.com) (jika digunakan)
+
 
 ---
 
@@ -57,5 +57,7 @@ Ikuti langkah-langkah berikut untuk menjalankan project Laravel di lokal:
    cd nama-repo
    composer install
    php artisan key:generate
+   php artisan migrate
+   php artisan serve
    
 
