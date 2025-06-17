@@ -39,7 +39,8 @@ Deskripsi singkat tentang proyek Laravel Anda. Misalnya:
 - [Livewire](https://livewire.laravel.com)
 - [Alpine.js](https://alpinejs.dev)
 - [Tailwind CSS](https://tailwindcss.com)
-- [TallStack] Component frontend
+- [TallStack](https://tallstackui.com/)
+- [Bluprint](https://blueprint.laravelshift.com/)
 - [MySQL](https://www.mysql.com)
 - [Vite](https://vitejs.dev) untuk asset frontend
 - [Filament](https://filamentphp.com) (jika digunakan)
